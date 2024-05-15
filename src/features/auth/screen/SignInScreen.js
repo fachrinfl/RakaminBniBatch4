@@ -2,11 +2,25 @@ import {useState} from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from "react-native";
 import {colors, sizes} from '../../../theme';
 import {useNavigation} from '@react-navigation/native'
+import Firebase from '../../../../firebaseConfig';
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const SignInScreen = () => {
-    const navigaiton = () => useNavigation()
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const navigation = useNavigation()
+    const [email, setEmail] = useState('fachri@gmail.com');
+    const [password, setPassword] = useState('123456');
+
+    const signIn = async () => {
+        try {
+          await signInWithEmailAndPassword(Firebase.auth, email, password);
+          navigation.reset({
+            index: 0,
+            routes: [{name: 'DashboardScreen'}]
+          })
+        } catch (error) {
+          console.error(error);
+        }
+      }
 
     return (
        <View style={styles.container}>
@@ -20,7 +34,7 @@ const SignInScreen = () => {
                 value={password}
                 onChangeText={(text) => setPassword(text)}
                 placeholder='Password' style={styles.input}/>
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity style={styles.btn} onPress={signIn}>
                 <Text style={styles.btnTitle}>SignIn</Text>
             </TouchableOpacity>
        </View> 
