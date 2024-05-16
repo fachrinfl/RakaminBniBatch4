@@ -76,13 +76,11 @@ const AddNoteScreen = () => {
             <View style={styles.imagesContainer}>
                 {images.map((image, index) => (
                     <Image 
-                    key={index}
-                    source={{uri: image.uri}}
-                    resizeMode="cover"
-                        style={{
-                            width: 100, 
-                            height: 100, 
-                            borderRadius: sizes.large}}/>
+                        key={index}
+                        source={{uri: image.uri}}
+                        resizeMode="cover"
+                        style={styles.images}
+                    />
                 ))}
                 <TouchableOpacity 
                     style={styles.addImageContainer} 
@@ -134,7 +132,15 @@ const styles = StyleSheet.create({
     },
     imagesContainer: {
         flexDirection: 'row',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        marginBottom: sizes.xl8, 
+    },
+    images: {
+        width: 100, 
+        height: 100,
+        marginRight: sizes.small, 
+        marginBottom: sizes.small, 
+        borderRadius: sizes.large
     }
 });
 

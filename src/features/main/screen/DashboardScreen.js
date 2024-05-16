@@ -40,6 +40,11 @@ const DashboardScreen = () => {
     if (!notes.length) {
         return (
             <View style={styles.emptyContainer}>
+                <Ionicons 
+                    name="list"
+                    size={56}
+                    color={colors.primary.blue}
+                />
                 <Text style={styles.text}>No notes have been made yet, please add some</Text>
             </View>
         );
@@ -99,6 +104,7 @@ const styles = StyleSheet.create({
         color: colors.textColors.grey,   
         textAlign: 'center',
         fontWeight: '600',
+        width: 200
     }
 });
 
