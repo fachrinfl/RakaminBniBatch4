@@ -17,6 +17,7 @@ const AddNoteScreen = () => {
                 placeholder="Description"
                 value={description}
                 onChangeText={setDescription}
+                multiline
             />
             <Button 
                 title="Save"
