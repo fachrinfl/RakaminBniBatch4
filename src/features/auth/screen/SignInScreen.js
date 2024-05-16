@@ -1,9 +1,10 @@
 import {useState} from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import {colors, sizes} from '../../../theme';
 import {useNavigation} from '@react-navigation/native'
 import Firebase from '../../../../firebaseConfig';
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { Input, Button } from '../../../components';
 
 const SignInScreen = () => {
     const navigation = useNavigation()
@@ -26,17 +27,18 @@ const SignInScreen = () => {
        <View style={styles.container}>
             <Text style={styles.title}>Signin to your account</Text>
             <View style={styles.line} />
-            <TextInput 
+            <Input 
                 value={email}
                 onChangeText={(text) => setEmail(text)}
-                placeholder='Email' style={styles.input}/>
-            <TextInput 
+                placeholder='Email' />
+            <Input 
                 value={password}
                 onChangeText={(text) => setPassword(text)}
-                placeholder='Password' style={styles.input}/>
-            <TouchableOpacity style={styles.btn} onPress={signIn}>
-                <Text style={styles.btnTitle}>SignIn</Text>
-            </TouchableOpacity>
+                placeholder='Password' />
+            <Button 
+                title="SignIn"
+                onPress={signIn}
+            />
        </View> 
     );
 }
@@ -59,27 +61,6 @@ const styles = StyleSheet.create({
         marginTop: sizes.xl2,
         marginBottom: 48,
     },
-    input: {
-        height: 56,
-                width: '100%',
-                marginBottom: sizes.xl8,
-                paddingHorizontal: sizes.large,
-                paddingVertical: sizes.xl,
-                backgroundColor: colors.textColors.whiteGrey,
-                borderRadius: sizes.medium,
-                fontWeight: '600'
-    },
-    btn: {
-        backgroundColor: colors.primary.blue,
-        height: 56,
-        borderRadius: sizes.medium,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    btnTitle: {
-        color: colors.textColors.white,
-        fontWeight: '600'
-    }
 });
 
 export default SignInScreen;
