@@ -1,4 +1,4 @@
-import { Text, StyleSheet, TouchableOpacity, FlatList, Alert } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, FlatList, Alert, View } from "react-native";
 import {colors, sizes} from '../../../theme';
 import {useSelector, useDispatch} from 'react-redux';
 import {Ionicons} from '@expo/vector-icons';
@@ -36,6 +36,14 @@ const DashboardScreen = () => {
             </TouchableOpacity>
         </TouchableOpacity>  
     );
+
+    if (!notes.length) {
+        return (
+            <View style={styles.emptyContainer}>
+                <Text style={styles.text}>No notes have been made yet, please add some</Text>
+            </View>
+        );
+    }
 
     return (
        <FlatList 
@@ -81,6 +89,16 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         fontSize: sizes.large,
         marginLeft: 8,
+    },
+    emptyContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    text: {
+        color: colors.textColors.grey,   
+        textAlign: 'center',
+        fontWeight: '600',
     }
 });
 
