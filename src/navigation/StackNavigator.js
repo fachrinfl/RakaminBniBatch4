@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SignInScreen, SignUpScreen} from '../features/auth';
-import {DashboardScreen, AddNoteScreen} from '../features/main';
+import {DashboardScreen, AddNoteScreen, EditNoteScreen} from '../features/main';
 import Firebase from '../../firebaseConfig';
 import {onAuthStateChanged, signOut} from 'firebase/auth';
 import {colors} from '../theme';
@@ -84,6 +84,18 @@ const StackNavigator = () => {
             )}
             <Stack.Screen name='SignUpScreen' component={SignUpScreen} />
             <Stack.Screen name='AddNoteScreen' component={AddNoteScreen} options={{
+                headerTitle: 'Add New Note',
+                headerLeft: () => (
+                    <Ionicons 
+                        name='arrow-back-circle'
+                        size={24}
+                        color={colors.primary.blue}
+                        onPress={() => navigation.goBack()}
+                    />
+                ),
+            }} />
+            <Stack.Screen name='EditNoteScreen' component={EditNoteScreen} options={{
+                headerTitle: 'Edit Note',
                 headerLeft: () => (
                     <Ionicons 
                         name='arrow-back-circle'

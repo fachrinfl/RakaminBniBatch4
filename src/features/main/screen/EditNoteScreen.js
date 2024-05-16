@@ -1,21 +1,29 @@
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import {Input, Button} from '../../../components';
 import { sizes } from "../../../theme";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux"; 
-import {addNote} from '../../../store/actions/noteActions';
-import {useNavigation} from '@react-navigation/native';
+import {editNote} from '../../../store/actions/noteActions';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
-const AddNoteScreen = () => {
+const EditNoteScreen = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const dispatch = useDispatch();
     const navigation = useNavigation();
+    const route = useRoute();
+    const item = route.params.item;
+    console.log(item)
+
+    useEffect(() => {
+        setTitle(item.title);
+        setDescription(item.description);
+    }, [])
 
     const saveHandler = () => {
-        dispatch(addNote({
-            id: Date.now(),
-            title,
+        dispatch(editNote({
+            id: item.id,
+            title, 
             description
         }));
         navigation.goBack();
@@ -49,4 +57,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default AddNoteScreen;
+export default EditNoteScreen;

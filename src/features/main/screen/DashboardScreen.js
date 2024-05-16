@@ -3,13 +3,15 @@ import {colors, sizes} from '../../../theme';
 import {useSelector, useDispatch} from 'react-redux';
 import {Ionicons} from '@expo/vector-icons';
 import { deleteNote } from "../../../store/actions/noteActions";
+import {useNavigation} from '@react-navigation/native';
 
 const DashboardScreen = () => {
     const notes = useSelector((state) => state.notes.notes);
     const dispatch = useDispatch();
+    const navigation = useNavigation();
 
     const noteRender = (item) => (
-        <TouchableOpacity style={styles.card} onPress={() => {}}>
+        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('EditNoteScreen', {item})}>
             <Text style={styles.title}>{item.title}</Text>
             <Text style={styles.description}>{item.description}</Text>
             <TouchableOpacity style={styles.btnDelete} onPress={() => Alert.alert(
