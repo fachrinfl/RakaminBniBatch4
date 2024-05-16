@@ -3,12 +3,12 @@ import { StyleSheet, TextInput } from "react-native";
 import {colors, sizes} from '../theme';
 
 const Input = () => {
-    const [email, setEmail] = useState('fachri@gmail.com');
+    const [email1, setEmail1] = useState('fachri@gmail.com');
 
     return (
         <TextInput 
-        value={email}
-        onChangeText={(text) => setEmail(text)}
+        value={email1}
+        onChangeText={(text) => setEmail1(text)}
         placeholder='Email' style={styles.input}/>
     );
 }
